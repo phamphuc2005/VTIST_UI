@@ -8,23 +8,18 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="img/logo/logo.png" rel="icon">
-  <title>VTIST</title>
+  <title>VTIST - Scan detail</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-
-<style>
-.app_scan:hover, .web_scan:hover, .network_scan:hover, .os_scan:hover {
-  opacity: 0.7;
-}
-</style>
 
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
-    <ul class="navbar-nav sidebar sidebar-light accordion " id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center " href="index.html">
+    <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <!-- <div class="sidebar-brand-icon">
           <img src="img/logo/logo2.png">
         </div> -->
@@ -37,7 +32,7 @@
           <span>MENU</span></div>
       </li>
       <hr class="sidebar-divider">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
           <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -45,7 +40,7 @@
         </a>
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item active" href="index.html">All scan</a>
+            <a class="collapse-item" href="index.html">All scan</a>
             <a class="collapse-item" href="history.html">History</a>
           </div>
         </div>
@@ -69,9 +64,10 @@
         </a>
       </li>
       <hr class="sidebar-divider">
-      <!-- <div class="sidebar-heading">
+
+      <div class="sidebar-heading">
         Features
-      </div> -->
+      </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
@@ -104,17 +100,17 @@
           </div>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span>
         </a>
-        <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+        <div id="collapseTable" class="collapse show" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tables</h6>
             <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-            <a class="collapse-item" href="datatables.html">DataTables</a>
+            <a class="collapse-item active" href="datatables.html">DataTables</a>
           </div>
         </div>
       </li>
@@ -156,11 +152,31 @@
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <!-- TopBar -->
-        <nav class="navbar navbar-expand navbar-light  bg-navbar topbar mb-4 static-top">
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
           <ul class="navbar-nav ml-auto">
+            <!-- <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
+                <form class="navbar-search">
+                  <div class="input-group">
+                    <input type="text" class="form-control bg-light border-1 small" placeholder="What do you want to look for?"
+                      aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </li> -->
             <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -322,326 +338,105 @@
           </ul>
         </nav>
         <!-- Topbar -->
-
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Home</h1>
+            <h1 class="h3 mb-0 text-gray-800">Scan detail</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <!-- <li class="breadcrumb-item active" aria-current="page">Dashboard</li> -->
+              <li class="breadcrumb-item">Scan detail</li>
+              <!-- <li class="breadcrumb-item active" aria-current="page">DataTables</li> -->
             </ol>
           </div>
 
-          <div class="row mb-3">
-            <!-- App scan -->
-            <a href="appScan.html" class="col-xl-3 col-md-6 mb-4 " style="cursor: pointer; text-decoration: none;">
-              <div class="card h-100 app_scan">
-                <div class="card-body">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-                      <i class="fas fa-mobile-alt fa-2x text-primary"></i>
-                    </div>
-                    <div class="col mr-2">
-                      <!-- <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div> -->
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">App scan</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="mr-2" style="color: blue;">Use</span>
-                        <!-- <span>Since last month</span> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <!-- Web scan -->
-            <a href="webScan.html" class="col-xl-3 col-md-6 mb-4" style="cursor: pointer; text-decoration: none;">
-              <div class="card h-100 web_scan">
-                <div class="card-body">
-                  <div class="row  align-items-center">
-                    <div class="col-auto">
-                      <i class="fas fa-server fa-2x text-success"></i>
-                    </div>
-                    <div class="col mr-2">
-                      <!-- <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div> -->
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Web scan</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="mr-2" style="color: blue;">Use</span>
-                        <!-- <span>Since last years</span> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <!-- Network scan -->
-            <a href="networkScan.html" class="col-xl-3 col-md-6 mb-4" style="cursor: pointer; text-decoration: none;">
-              <div class="card h-100 network_scan">
-                <div class="card-body">
-                  <div class="row  align-items-center">
-                    <div class="col-auto">
-                      <i class="fas fa-globe fa-2x text-info"></i>
-                    </div>
-                    <div class="col mr-2">
-                      <!-- <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div> -->
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Network scan</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="mr-2" style="color: blue;">Use</span>
-                        <!-- <span>Since last month</span> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <!-- OS scan -->
-            <a href="osScan.html" class="col-xl-3 col-md-6 mb-4" style="cursor: pointer; text-decoration: none;">
-              <div class="card h-100 os_scan">
-                <div class="card-body">
-                  <div class="row align-items-center">
-                    <div class="col-auto">
-                      <i class="fas fa-apple-alt fa-2x text-warning"></i>
-                    </div>
-                    <div class="col mr-2">
-                      <!-- <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div> -->
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">OS scan</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="mr-2" style="color: blue;">Use</span>
-                        <!-- <span>Since yesterday</span> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </a>
-
-            <!-- Area Chart -->
-            <!-- <div class="col-xl-8 col-lg-7">
+          <!-- Row -->
+          <div class="row" style="display: flex;">
+            <!-- Datatables -->
+            <div class="col-lg-8">
               <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            <!-- Pie Chart -->
-            <!-- <div class="col-xl-4 col-lg-5">
-              <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle btn btn-primary btn-sm" href="#" role="button" id="dropdownMenuLink"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Month <i class="fas fa-chevron-down"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Select Periode</div>
-                      <a class="dropdown-item" href="#">Today</a>
-                      <a class="dropdown-item" href="#">Week</a>
-                      <a class="dropdown-item active" href="#">Month</a>
-                      <a class="dropdown-item" href="#">This Year</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="mb-3">
-                    <div class="small text-gray-500">Oblong T-Shirt
-                      <div class="small float-right"><b>600 of 800 Items</b></div>
-                    </div>
-                    <div class="progress" style="height: 12px;">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="80"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <div class="small text-gray-500">Gundam 90'Editions
-                      <div class="small float-right"><b>500 of 800 Items</b></div>
-                    </div>
-                    <div class="progress" style="height: 12px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 70%" aria-valuenow="70"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <div class="small text-gray-500">Rounded Hat
-                      <div class="small float-right"><b>455 of 800 Items</b></div>
-                    </div>
-                    <div class="progress" style="height: 12px;">
-                      <div class="progress-bar bg-danger" role="progressbar" style="width: 55%" aria-valuenow="55"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <div class="small text-gray-500">Indomie Goreng
-                      <div class="small float-right"><b>400 of 800 Items</b></div>
-                    </div>
-                    <div class="progress" style="height: 12px;">
-                      <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <div class="small text-gray-500">Remote Control Car Racing
-                      <div class="small float-right"><b>200 of 800 Items</b></div>
-                    </div>
-                    <div class="progress" style="height: 12px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 30%" aria-valuenow="30"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer text-center">
-                  <a class="m-0 small text-primary card-link" href="#">View More <i
-                      class="fas fa-chevron-right"></i></a>
-                </div>
-              </div>
-            </div> -->
-            <!-- Invoice Example -->
-            <div class="col-xl-12 col-lg-7 mb-4">
-              <div class="card">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">All scan</h6>
-                      <form class="navbar-search">
-                        <div class="input-group">
-                          <input type="text" class="form-control bg-light border-1 small" placeholder="Search"
-                            aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-                          <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                              <i class="fas fa-search fa-sm"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                </div>
-                <div class="table-responsive">
-                  <table class="table align-items-center table-flush" style="margin-top: 10px;">
-                    <thead class="">
+                <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
                       <tr>
-                        <th>Assest</th>
-                        <th>Name</th>
-                        <th>System</th>
+                        <th>#</th>
+                        <th>Host</th>
                         <th>Vulnerabilities</th>
-                        <th>Last scan</th>
                         <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td><a href="allScanDetail.html">192.168.0.1</a></td>
-                        <td>Scan OS</td>
-                        <td>Debian 10</td>
-                        <td>2</td>
-                        <td>7:00:35 11/8/2020</td>
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <td><i class="fas fa-trash text-danger ml-3" style="cursor: pointer;"></i></td>
+                        <td>
+                          <div class="form-group custom-control custom-checkbox" style="margin-left: -2px;">
+                            <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                            <label class="custom-control-label" for="customControlAutosizing"></label>
+                          </div>
+                        </td>
+                        <td>192.168.16.1</td>
+                        <td>
+                          <div class="progress" style="margin-top: 4px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 40%" aria-valuenow="15" aria-valuemin="0"
+                              aria-valuemax="100">4</div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="30"
+                              aria-valuemin="0" aria-valuemax="100">2</div>
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30"
+                              aria-valuemin="0" aria-valuemax="100">3</div>
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 10%" aria-valuenow="20"
+                              aria-valuemin="0" aria-valuemax="100">1</div>
+                          </div>
+                        </td>
+                        <td><i class="fas fa-trash text-danger" style="cursor: pointer; margin-left: 15px;"></i></td>
                       </tr>
-                      <tr>
-                        <td>192.168.0.1</td>
-                        <td>Scan OS</td>
-                        <td>Debian 10</td>
-                        <td>2</td>
-                        <td>7:00:35 11/8/2020</td>
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <td><i class="fas fa-trash text-danger ml-3" style="cursor: pointer;"></i></td>
-                      </tr>
-                      <tr>
-                        <td>192.168.0.1</td>
-                        <td>Scan OS</td>
-                        <td>Debian 10</td>
-                        <td>2</td>
-                        <td>7:00:35 11/8/2020</td>
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <td><i class="fas fa-trash text-danger ml-3" style="cursor: pointer;"></i></td>
-                      </tr>
-                      <tr>
-                        <td>192.168.0.1</td>
-                        <td>Scan OS</td>
-                        <td>Debian 10</td>
-                        <td>2</td>
-                        <td>7:00:35 11/8/2020</td>
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <td><i class="fas fa-trash text-danger ml-3" style="cursor: pointer;"></i></td>
-                      </tr>
-                      <tr>
-                        <td>192.168.0.1</td>
-                        <td>Scan OS</td>
-                        <td>Debian 10</td>
-                        <td>2</td>
-                        <td>7:00:35 11/8/2020</td>
-                        <!-- <td><span class="badge badge-success">Delivered</span></td> -->
-                        <td><i class="fas fa-trash text-danger ml-3" style="cursor: pointer;"></i></td>
-                      </tr>
-                      
                     </tbody>
                   </table>
                 </div>
-                <div class="card-footer"></div>
+              </div>
+              <div class="card" style="background-color: white; height: 253px; display: flex;">
+                <!-- <div style="margin-top: 20px; margin-left: 30px; font-weight: 600;">Vulnerabilities</div> -->
+                <div id="piechart"></div>
+                <!-- <canvas id="myChart" style="width:100%;max-width:550px; margin-left: 130px;"></canvas> -->
+              </div>  
+            </div>
+            <div class="col-lg-4">
+              <div class="card mb-1" style="background-color: white; height: 70px; padding: 20px; font-size: 20px; font-weight: 600;">Scan detail:</div>
+              <div class="card" style="background-color: white; height: 350px; padding: 20px; font-size: 16px;">
+                <div style="display: flex; gap: 5px; margin-bottom: 20px;">
+                  <div style="font-weight: 600;">Policy:</div>
+                  <div>Web application scan</div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-bottom: 20px;">
+                  <div style="font-weight: 600;">Status:</div>
+                  <div>Completed</div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-bottom: 20px;">
+                  <div style="font-weight: 600;">Scanner:</div>
+                  <div>Local scanner</div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-bottom: 20px;">
+                  <div style="font-weight: 600;">Start:</div>
+                  <div>17:33:00 1/9/2020</div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-bottom: 20px;">
+                  <div style="font-weight: 600;">End:</div>
+                  <div>17:50:05 1/9/2020</div>
+                </div>
+                <div style="display: flex; gap: 5px; margin-bottom: 20px;">
+                  <div style="font-weight: 600;">Elapsed:</div>
+                  <div>17 min 5 s</div>
+                </div>
               </div>
             </div>
-            <!-- Message From Customer-->
-            <!-- <div class="col-xl-4 col-lg-5 ">
-              <div class="card">
-                <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
-                </div>
-                <div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Hi there! I am wondering if you can help me with a
-                        problem I've been having.</div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok · 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a href="#">
-                      <div class="text-truncate message-title">But I must explain to you how all this mistaken idea
-                      </div>
-                      <div class="small text-gray-500 message-time">Nana Haminah · 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau · 25m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">At vero eos et accusamus et iusto odio dignissimos
-                        ducimus qui blanditiis
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang · 54m</div>
-                    </a>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="#">View More <i
-                        class="fas fa-chevron-right"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
           <!--Row-->
+
+          <!-- Documentation Link -->
+          <!-- <div class="row">
+            <div class="col-lg-12">
+              <p>DataTables is a third party plugin that is used to generate the demo table below. For more information
+                about DataTables, please visit the official <a href="https://datatables.net/" target="_blank">DataTables
+                  documentation.</a></p>
+            </div>
+          </div> -->
 
           <!-- Modal Logout -->
           <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
@@ -668,6 +463,7 @@
         </div>
         <!---Container Fluid-->
       </div>
+
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -676,6 +472,7 @@
               <b><a href="https://indrijunanda.gitlab.io/" target="_blank">vnist.vn</a></b>
             </span>
             <div class="version">Version 1.1.1</div>
+
           </div>
         </div>
       </footer>
@@ -688,12 +485,76 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/ruang-admin.min.js"></script>
-  <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script>  
+
+  <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script>
+    $(document).ready(function () {
+      $('#dataTable').DataTable(); // ID From dataTable 
+      $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+  </script>
+
+<script type="text/javascript">
+  // Load google charts
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  
+  // Draw the chart and set the chart values
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+    ['Level', ''],
+    ['Low', 4],
+    ['Critical', 2],
+    ['High', 3],
+    ['Medium', 1],
+  ]);
+  
+    // Optional; add a title and set the width and height of the chart
+    var options = {'title': 'Vulnerabilities', 'height':250};
+  
+    // Display the chart inside the <div> element with id="piechart"
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+  }
+  </script>
+
+<script>
+  var xValues = ["Low", "Critical", "High", "Medium"];
+  var yValues = [4,2,3,1];
+  var barColors = [
+    "#3abaf4",
+    "#66bb6a",
+    "#ffa426",
+    "#fc544b"
+  ];
+  new Chart("myChart", {
+    type: "doughnut",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: "Vulnerabilities"
+      }
+    }
+  });
+  </script>
+
 </body>
 
 </html>
